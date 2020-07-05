@@ -17,10 +17,15 @@ export class ChatService {
    }
 
    loadMessages(): Observable<Message[]> {
-     this.itemsCollection = this.firestore.collection<Message>('chats');
+     this.itemsCollection = this.firestore.collection<Message>('chats', query =>
+      query.orderBy('createdAt', 'desc').limit(250)
+     );
      return this.itemsCollection.valueChanges().pipe(
       map((messages: Message[]) => {
-        this.chats = messages;
+        this.chats = [];
+        messages.forEach(message => {
+          this.chats.unshift(message);
+        });
         return messages;
       })
      );
