@@ -3,16 +3,30 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Message } from '../interfaces/message.iterface';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  chats: Message[];
+  public chats: Message[];
   private itemsCollection: AngularFirestoreCollection<Message>;
+  public user: any = {};
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(
+    private firestore: AngularFirestore,
+    public authentication: AngularFireAuth
+  ) {
+    this.authentication.authState.subscribe(user => {
+      if (!user) {
+        return;
+      }
+
+      this.user.name = user.displayName;
+      this.user.uid = user.uid;
+    });
     this.chats = [];
    }
 
@@ -39,4 +53,16 @@ export class ChatService {
     };
     return this.itemsCollection.add(message);
    }
+
+   login(typeLogin: string): void {
+    if (typeLogin === 'google') {
+      this.authentication.signInWithPopup(new auth.GoogleAuthProvider());
+      console.log(this.authentication);
+    }
+  }
+
+  logout(): void {
+    this.authentication.signOut();
+  }
+
 }

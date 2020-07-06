@@ -1,27 +1,31 @@
-<h1>Chat</h1>
-<hr />
+<div class="chat-window">
 
-<div class="app-mensajes" id="app-messages">
-  <div class="text-right" *ngFor="let chat of chatService.chats">
-    <h5><span class="badge badge-pill badge-success">{{ chat.name }}</span></h5>
-    <p class="text-right text-justify">
-      {{ chat.text }}
-      <br />
-      <small class="text-muted">
-        {{ convertToDate(chat.createdAt) | date: "dd/MM/yyyy, h:mm a" }}
-      </small>
-    </p>
+  <h1>Chat</h1>
+  <hr />
+
+  <div class="app-mensajes" id="app-messages">
+    <div class="text-right" *ngFor="let chat of chatService.chats">
+      <h5><span class="badge badge-pill badge-success">{{ chat.name }}</span></h5>
+      <p class="text-right text-justify">
+        {{ chat.text }}
+        <br />
+        <small class="text-muted">
+          {{ convertToDate(chat.createdAt) | date: "dd/MM/yyyy, h:mm a" }}
+        </small>
+      </p>
+    </div>
   </div>
+  
+  <hr />
+  
+  <input
+    class="form-control"
+    type="text"
+    name="message"
+    [(ngModel)]="message"
+    (keyup.enter)="sendMessage(messageText.value)"
+    placeholder="Escribe un mensaje"
+    #messageText
+  />
+  
 </div>
-
-<hr />
-
-<input
-  class="form-control"
-  type="text"
-  name="message"
-  [(ngModel)]="message"
-  (keyup.enter)="sendMessage(messageText.value)"
-  placeholder="Escribe un mensaje"
-  #messageText
-/>

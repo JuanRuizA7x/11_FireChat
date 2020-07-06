@@ -28,9 +28,10 @@ export class ChatComponent implements OnInit {
   sendMessage(message: string): void {
     if (this.message.trim()) {
       this.chatService.addMessage(message)
-      .then(() => this.message = '')
+      .then(() => console.log('Mensaje enviado'))
       .catch((error) => console.error('Error al enviar mensaje\n', error));
     }
+    this.message = '';
   }
 
   convertToDate(createdAt): Date {

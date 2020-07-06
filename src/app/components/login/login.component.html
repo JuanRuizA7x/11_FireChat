@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <p>Inicie sesión con su cuenta favorita</p>
+
+    <button
+      style="margin: 0px 10px;"
+      type="button"
+      class="btn btn-outline-success"
+      (click)="login('google')"
+    >
+      Google
+    </button>
+
+    <button
+      style="margin: 0px 10px;"
+      type="button"
+      class="btn btn-outline-info"
+      (click)="login('twitter')"
+    >
+      Twitter
+    </button>
+  </div>
+</div>
