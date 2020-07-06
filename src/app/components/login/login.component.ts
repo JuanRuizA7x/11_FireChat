@@ -18,7 +18,4 @@ export class LoginComponent implements OnInit {
     this.chatService.login(typeLogin);
   }
 
-  logout(): void {
-  }
-
 }

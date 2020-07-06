@@ -2,6 +2,7 @@
   <h1 class="text-center">FireChat</h1>
   <hr>
   <div>
-    <router-outlet></router-outlet>
+    <app-login *ngIf="!chatService.user.uid"></app-login>
+    <app-chat *ngIf="chatService.user.uid"></app-chat>
   </div>
 </div>

@@ -1,12 +1,38 @@
-<div class="chat-window">
+<div class="col-md-12 text-right">
+  <button
+    type="button"
+    class="btn btn-outline-danger"
+    (click)="chatService.logout()"
+  >
+    Salir
+  </button>
+</div>
 
+<br>
+
+<div class="chat-window">
   <h1>Chat</h1>
   <hr />
 
   <div class="app-mensajes" id="app-messages">
-    <div class="text-right" *ngFor="let chat of chatService.chats">
-      <h5><span class="badge badge-pill badge-success">{{ chat.name }}</span></h5>
-      <p class="text-right text-justify">
+    <div
+      [ngClass]="{ 'text-right': chat.uid === chatService.user.uid }"
+      *ngFor="let chat of chatService.chats"
+    >
+      <h5>
+        <span
+          class="badge badge-pill"
+          [ngClass]="{
+            'badge-success': chat.uid === chatService.user.uid,
+            'badge-info': chat.uid !== chatService.user.uid
+          }"
+          >{{ chat.name }}</span
+        >
+      </h5>
+      <p
+        class="text-justify"
+        [ngClass]="{ 'text-right': chat.uid === chatService.user.uid }"
+      >
         {{ chat.text }}
         <br />
         <small class="text-muted">
@@ -15,9 +41,9 @@
       </p>
     </div>
   </div>
-  
+
   <hr />
-  
+
   <input
     class="form-control"
     type="text"
@@ -27,5 +53,4 @@
     placeholder="Escribe un mensaje"
     #messageText
   />
-  
 </div>

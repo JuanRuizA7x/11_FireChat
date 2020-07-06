@@ -47,9 +47,10 @@ export class ChatService {
 
    addMessage(data: string): Promise<DocumentReference> {
     const message: Message = {
-      name: 'Juan Ruíz',
+      name: this.user.name,
       text: data,
-      createdAt: new Date()
+      createdAt: new Date(),
+      uid: this.user.uid
     };
     return this.itemsCollection.add(message);
    }
@@ -63,6 +64,7 @@ export class ChatService {
 
   logout(): void {
     this.authentication.signOut();
+    this.user = {};
   }
 
 }
