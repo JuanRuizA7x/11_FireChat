@@ -8,12 +8,11 @@
   </button>
 </div>
 
-<br>
+<br />
 
 <div class="chat-window">
   <h1>Chat</h1>
   <hr />
-
   <div class="app-mensajes" id="app-messages">
     <div
       [ngClass]="{ 'text-right': chat.uid === chatService.user.uid }"
@@ -31,7 +30,7 @@
       </h5>
       <p
         class="text-justify"
-        [ngClass]="{ 'text-right': chat.uid === chatService.user.uid }"
+        [ngClass]="{ 'texto-derecha': chat.uid === chatService.user.uid }"
       >
         {{ chat.text }}
         <br />

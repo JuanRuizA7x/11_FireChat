@@ -58,7 +58,8 @@ export class ChatService {
    login(typeLogin: string): void {
     if (typeLogin === 'google') {
       this.authentication.signInWithPopup(new auth.GoogleAuthProvider());
-      console.log(this.authentication);
+    } else {
+      this.authentication.signInWithPopup(new auth.TwitterAuthProvider());
     }
   }
 

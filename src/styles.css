@@ -7,7 +7,6 @@
   cursor: pointer;
 }
 
-
 .chat-window{
   margin: 0px auto;
   padding: 10px;
@@ -85,4 +84,9 @@
 .app-mensajes::-webkit-scrollbar-track:hover, 
 .app-mensajes::-webkit-scrollbar-track:active {
   background: #d4d4d4;
+}
+
+.texto-derecha {
+  direction:rtl;
+  text-align:justify;
 }
